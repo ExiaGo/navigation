@@ -33,7 +33,7 @@
 			cursor: pointer;
 		}
 		.foot {
-			position: absolute;
+			position: fixed;
 			width: 100%;
 			height: 100px;
 			bottom: 50px;
@@ -181,9 +181,7 @@
 			<input type="text" ng-model="website">
 			<span>网站名称</span>
 			<input type="text" ng-model="webName">
-			<select ng-model="select"
-              ng-init="select = selects.name"
-              ng-options="v.name for v in selects">
+			<select ng-model="select" ng-options="v.name for v in selects">
   		    </select>
 			<button ng-click="add()">添加</button>
 		</div>
@@ -250,6 +248,7 @@
 			$scope.arrTitle = [$scope.title1, $scope.title2, $scope.title3];
 			$scope.selects = [{"name":"常用"},{"name":"视频"}, {"name":"编程"}];
 			$scope.website = "http://";
+			$scope.select = $scope.selects[0];
 			$scope.add = function() {
 				var website = $scope.website;
 				var webName = $scope.webName;
