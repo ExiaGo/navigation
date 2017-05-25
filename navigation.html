@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>导航</title>
+	<script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="./bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="./bootstrap-3.3.7-dist/css/bootstrap.min.css">
+	<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+	<style type="text/css">
+		.box {
+			width: 80%;
+			margin: 0 auto;
+		}
+		.searchBox {
+			width: 600px;
+			height: 50px;
+			margin: 0 auto;
+			margin-bottom: 20px;
+		}
+		#search1 {
+			width: 500px;
+			height: 50px;
+			margin-left: 50px;
+			font-size: 24px;
+		}
+		input::-webkit-input-placeholder  { 
+			text-align: center; 
+		}
+		.navbar-fixed-bottom span {
+			width: 30px;
+			margin: 5px 50%;
+			cursor: pointer;
+		}
+		.foot {
+			position: absolute;
+			width: 100%;
+			height: 100px;
+			bottom: 50px;
+			background-color: gray;
+		}
+		.foot div {
+			width: 600px;
+			margin: 10px auto;
+		}
+		.foot div span {
+			color: rgb(255, 140, 60);
+			font-weight: bold;
+		}
+		.btn {
+			float: right;
+		}
+		th {
+			font-size: 24px;
+		}
+	</style>
+</head>
+<body ng-app="edit" ng-controller="myCtrl">
+	<div>
+		<nav class="navbar navbar-inverse">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="##" target="" title="个人导航">
+					<span class="glyphicon glyphicon-globe"></span> &nbsp;个人 导航
+					</a>
+				</div>	  
+			</div>
+		</nav>
+	</div>
+	<div class="box">
+		<div class="searchBox">
+			<form target="_blank" name="bdfm" method="get" action="http://www.baidu.com/s">
+				<table>
+					<tr>
+						<td>
+							<a href="http://www.baidu.com"></a>
+						</td>
+						<td>
+							<input type="text" id="search1" name="word" placeholder="搜索框" type="submit"/>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr ng-mouseenter="show = true" ng-mouseleave="show = false">
+							<th>
+								<span ng-mouseenter="reset(0)">{{ title1 }}</span>
+								<button ng-click="showOrhide()" ng-show="show" class="btn">编辑</button>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- <tr>
+							<td><a href="http://www.imooc.com/" target="_blank">慕课网</a></td>
+						</tr>
+						<tr>
+							<td><a href="http://cn.bing.com/" target="_blank">必应</a></td>
+						</tr>
+						<tr>
+							<td><a href="https://shimo.im/desktop" target="_blank">石墨文档</a></td>
+						</tr> -->
+						<tr ng-repeat="item in items1">
+							<td><a href="{{ item.url }}" target="_blank">{{ item.name }}</a>
+							<button ng-click="del($index, 0)" class="btn" id="del1" ng-show="isShow">删除</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>  
+        	<div class="col-md-4">
+        		<table class="table table-striped table-hover">
+        			<thead>
+        				<tr ng-mouseenter="show = true" ng-mouseleave="show = false">
+        					<th>
+        					<span ng-mouseenter="reset(1)">{{ title2 }}</span>
+        						<button ng-click="showOrhide()" ng-show="show" class="btn">编辑</button>
+        					</th>
+        				</tr>
+        			</thead>
+        			<tbody>
+        				<!-- <tr>
+        					<td><a href="http://www.bilibili.com/" target="_blank">bilibili</a></td>
+        				</tr>
+        				<tr>
+        					<td><a href="http://www.acfun.cn/" target="_blank">AcFun</a></td>
+        				</tr>
+        				<tr>
+        					<td><a href="http://www.youku.com/" target="_blank">优酷网</a></td>
+        				</tr> -->
+        				<tr ng-repeat="item in items2" >
+							<td><a href="{{ item.url }}" target="_blank">{{ item.name }}</a>
+							<button ng-click="del($index, 1)" class="btn" id="del2" ng-show="isShow">删除</button>
+							</td>
+						</tr>
+        			</tbody>
+        		</table>
+        	</div>   
+        	<div class="col-md-4">
+        		<table class="table table-striped table-hover">
+        			<thead>
+        				<tr ng-mouseenter="show = true" ng-mouseleave="show = false">
+        					<th>
+        						<span ng-mouseenter="reset(2)">{{ title3 }}</span>
+        						<button ng-click="showOrhide()" ng-show="show" class="btn">编辑</button>
+        					</th>
+        				</tr>
+        			</thead>
+           			<tbody>
+        				<!-- <tr>
+        					<td><a href="http://www.runoob.com/" target="_blank">菜鸟</a></td>
+        				</tr>
+        				<tr>
+        					<td><a href="http://www.w3school.com.cn/" target="_blank">W3C</a></td>
+        				</tr>
+        				<tr>
+        					<td><a href="https://github.com/" target="_blank">GitHub</a></td>
+        				</tr> -->
+        				<tr ng-repeat="item in items3">
+							<td><a href="{{ item.url }}" target="_blank">{{ item.name }}</a>
+							<button ng-click="del($index, 2)" class="btn" id="del3" ng-show="isShow">删除</button>
+							</td>
+						</tr>
+        			</tbody>
+        		</table>
+        	</div>  
+		</div>
+		<div class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+			<span class="glyphicon glyphicon-chevron-up" id="up" style="color: rgb(255, 140, 60); font-size: 30px;"></span>
+		</div>
+		<div class="foot">
+			
+		</div>
+	</div>
+	<div class="foot">
+		<div>
+			<span>网络地址</span>
+			<input type="text" ng-model="website">
+			<span>网站名称</span>
+			<input type="text" ng-model="webName">
+			<select ng-model="select"
+              ng-init="select = selects.name"
+              ng-options="v.name for v in selects">
+  		    </select>
+			<button ng-click="add()">添加</button>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".foot").css('display', 'none');
+			$("#up").click(function() {
+				$(".foot").slideToggle();
+				$("#up").toggleClass('glyphicon-chevron-down');
+			})
+
+		})
+	</script>
+
+	<script type="text/javascript">
+		var app = angular.module("edit", []);
+		app.controller("myCtrl", function($scope) {
+			// $scope.titles = [{"title" : "常用"},{"title" : "视频"},{"title" : "编程"}];
+			$scope.title1 = "常用";
+			$scope.items1 = [{
+				"name" : "百度翻译",
+				"url" : "http://fanyi.baidu.com/"
+			},
+			{
+				"name" : "慕课网",
+				"url" : "http://www.imooc.com/"
+			},
+			{
+				"name" : "石墨文档",
+				"url" : "https://shimo.im/desktop"
+			},
+			{
+				"name" : "必应",
+				"url" : "http://cn.bing.com/"
+			}];
+			$scope.title2 = "视频";
+			$scope.items2 = [{
+				"name" : "bilibili",
+				"url" : "http://www.bilibili.com/"
+			},
+			{
+				"name" : "AcFun",
+				"url" : "http://www.acfun.cn/"
+			},
+			{
+				"name" : "优酷",
+				"url" : "http://www.youku.com/"
+			}];
+			$scope.title3 = "编程";
+			$scope.items3 = [{
+				"name" : "菜鸟",
+				"url" : "http://www.runoob.com/"
+			},
+			{
+				"name" : "W3C",
+				"url" : "http://www.w3school.com.cn/"
+			},
+			{
+				"name" : "GitHub",
+				"url" : "https://github.com/"
+			}]
+			$scope.arr = [$scope.items1, $scope.items2, $scope.items3];
+			$scope.arrTitle = [$scope.title1, $scope.title2, $scope.title3];
+			$scope.selects = [{"name":"常用"},{"name":"视频"}, {"name":"编程"}];
+			$scope.website = "http://";
+			$scope.add = function() {
+				var website = $scope.website;
+				var webName = $scope.webName;
+				var input = {
+					"name" : webName,
+					"url" : website
+				};
+				// console.log($scope.arr[0][0].name)
+				console.log($scope.select.name)
+				if($scope.select.name == "常用") {
+					$scope.items1.push(input);
+				}
+				else if($scope.select.name == "视频") {
+					$scope.items2.push(input);
+				}
+				else if($scope.select.name == "编程") {
+					$scope.items3.push(input);
+				}
+									
+			}
+			$scope.isShow = false;
+			$scope.showOrhide = function() {
+				$scope.isShow = !$scope.isShow;	
+				$scope.reset = function(i) {
+					var value = prompt("请输入您想修改的名字:","项目名称");
+					if(value == null) {
+						return;
+					}else if(value != null) {
+						$scope.arrTitle[i] = value;
+						$scope.$watch('arrTitle',function(newValue,oldValue) {
+				            $scope.title1 = newValue[0];
+				            $scope.title2 = newValue[1];
+				            $scope.title3 = newValue[2];
+				        }, true);					
+					}
+				}
+			}
+			$scope.del = function($index, i) {
+				// $scope.items3.splice($index, 1);
+				$scope.arr[i].splice($index, 1);
+				// console.log($index)
+			}
+		});
+
+
+
+
+
+
+
+
+
+	</script>
+</body>
+</html>
